@@ -14,11 +14,23 @@ class MNIST(Model):
         """
         super().__init__()
 
+        # 28 x 28
+        self.l_01 = ConvolutionLayer(
+            kernel_size=5,
+            input_channel=1,
+            output_channel=2
+        )
+        # 24 x 24
+        self.l_02 = MaxPooling(kernel=2)
+        # 12 x 12
+        self.l_03 = RELU()
+        # 12 x 12
+
         # first layer that flattens 28 x 28 image into 784 x 1
         self.l_08 = Flatten()
 
         # first LINEAR layer trat transfers 784 x 1 vector into 10 x 1
-        self.l_09 = LinearLayer(input_size=784, output_size=10)
+        self.l_09 = LinearLayer(input_size=288, output_size=10)
 
         # RELU activation function
         self.l_10 = RELU()

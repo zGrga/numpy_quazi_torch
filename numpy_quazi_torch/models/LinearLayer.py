@@ -6,11 +6,19 @@ class LinearLayer(Layer):
     def __init__(self,
                  input_size: int,
                  output_size: int) -> None:
+        """Fully connected linear layer.
+
+        Args:
+            input_size (int): input dimension
+            output_size (int): output dimension
+        """
         
         self.input_size = input_size
         self.output_size = output_size
+        # generate random weights
         self.weights = np.random.rand(self.input_size, self.output_size) - 0.5
 
+        # generate random bias
         self.b = np.random.rand(1, self.output_size) - 0.5
     
         self.uuid = str(uuid.uuid1())

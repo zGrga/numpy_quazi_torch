@@ -7,14 +7,15 @@ import tqdm
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import precision_recall_fscore_support
-from numpy_quazi_torch.scheduler.LinearScheduler import LinearScheduler
+from numpy_quazi_torch.scheduler.ExponentialScheduler import ExponentialScheduler
 import os
 import uuid
 
 def main():
     parser = argparse.ArgumentParser(description='Train model on MNIST dataset')
     parser.add_argument('--epochs', type=int, help='Number of epochs', required=True)
-    parser.add_argument('--lr', type=float, help='Learning rate [0.01]', required=False, default=0.05)
+    # parser.add_argument('--lr', type=float, help='Learning rate [0.01]', required=False, default=0.05)
+    parser.add_argument('--lr', type=float, help='Learning rate [0.01]', required=False, default=0.01)
     parser.add_argument('--dataset', type=str, help='Path to train dataset', required=True)
     parser.add_argument('--train_size', type=float, help='Train length [0.7]', default=0.7, required=False)
     parser.add_argument('--batch_size', type=int, help='Batch size', required=False, default=128)
@@ -32,7 +33,7 @@ def main():
     losses = []
     loss = SoftmaxLoss()
     model = MNIST()
-    scheduler = LinearScheduler(
+    scheduler = ExponentialScheduler(
         start_lr=args.lr,
         stop_learning_rate=1e-8,
         step=0.95

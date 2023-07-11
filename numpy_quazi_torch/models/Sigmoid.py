@@ -4,9 +4,19 @@ import uuid
 
 class Sigmoid(Layer):
     def __init__(self) -> None:
+        """Sigmoid activation function
+        """
         self.uuid = str(uuid.uuid1())
 
-    def __sigmoid(self, x: np.ndarray):
+    def __sigmoid(self, x: np.ndarray) -> np.array:
+        """Sigmoid function
+
+        Args:
+            x (np.ndarray): input
+
+        Returns:
+            np.array: sigmoid output
+        """
         return 1/(1 + np.exp(-x))
     
     def __call__(self, x: np.ndarray):

@@ -4,6 +4,8 @@ import uuid
 
 class RELU(Layer):
     def __init__(self) -> None:
+        """RELU activation function
+        """
         self.uuid = str(uuid.uuid1())
         self.positions = None
 
