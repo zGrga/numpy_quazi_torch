@@ -1,6 +1,6 @@
 # NUMPY QUAZI TORCH
 
-This library is created in order to desing custom machine learning models by using numpy library.
+This library was created in order to design custom machine learning models by using numpy library.
 The layers that are available are:
 
 +  `ConvolutionLayer` - 2D convolutional layer
@@ -11,7 +11,7 @@ The layers that are available are:
 +  `Sigmoid` - sigmoid activation function
 +  `SoftmaxLoss` - layer that is combining cross entropy and softmax
 
-The new layers can be added by inheriting the base class `numpy_quazi_torch.models.Linear`. Base class requires the following methods:
+The new layers can be added by inheriting the base class `numpy_quazi_torch.models.Linear`. The base class requires the following methods:
 
 + `backpropragation(output_gradient, learning_rate)` - called after passing data through all layers
 + `update(learning_rate)` - called after calculating bacpropagation gradients
@@ -19,11 +19,11 @@ The new layers can be added by inheriting the base class `numpy_quazi_torch.mode
 + `get_weights()` - returns layers weights
 + `load_weights(list_of_weights)` - loads weights
 
-In order to create new architecture you can just define mentioned layers in a order in which the input will be passed through. The class that passes input through intialized layers is called `numpy_quazi_torch.models.Model`. `Model` also backpropagate gradients through layers and store/loads weights.
+In order to create a new architecture you can just define the mentioned layers in a order in which the input will be passed through. The class that passes input through initialized layers is called `numpy_quazi_torch.models.Model`. `Model` also backpropagates gradients through layers and store/loads weights.
 
 There are three examples of architectures:
 
-+ `numpy_quazi_torch.custom_models.MNIST_model_2` - that uses only linear and flattening layers in order to classify images from MNIST dataset
++ `numpy_quazi_torch.custom_models.MNIST_model_2` - which uses only linear and flattening layers in order to classify images from MNIST dataset
 + `numpy_quazi_torch.custom_models.MNIST_model_3` - that uses not only linear layers, but also CNN and MaxPool layers
 + `numpy_quazi_torch.custom_models.XOR` - architecture used for predicting XOR result on two input variables
 
@@ -40,19 +40,19 @@ The following pictures are describing `numpy_quazi_torch.custom_models.MNIST_mod
 > Metrics that are tracked are: **precision, recall and F1 score**.
 
 
-Also there is a class `numpy_quazi_torch.scheduler.ExponentialScheduler` that is reducing learning rate on every epoch (represents scheduler):
+Also, there is a class `numpy_quazi_torch.scheduler.ExponentialScheduler` that is reducing learning rate at every epoch (represents a scheduler):
 
 $$lr_{i+1} = lr_{i} \cdot step^{i}, i \text{ - represents epoch index}$$
 
 ## Installation
 
-To install this library, just download git project and write: 
+To install this library, just download a git project and write: 
 
 ```
 (working_python_enviroment)$ pip install .
 ```
 
-In order to use trained `numpy_quazi_torch.custom_models.MNIST_model_2` model in a server (more in section *Server*) you need to extract `best.zip` file in the same dicrectory where `server.py` script is.
+In order to use trained `numpy_quazi_torch.custom_models.MNIST_model_2` model on a server (more in section *Server*) you need to extract `best.zip` file in the same directory where `server.py` script is.
 
 ## Training
 
@@ -80,16 +80,18 @@ options:
                         Path to pretrained weights
 ```
 
+The output of a tran is saved in `runs` directory. Each training execution has its own ID which is given randomly. So, for example, if you need to find your latest training weights, you will look into `runs` directory and find the latest created dictionary in which you can see `weights` directory with all the layers weights.
+
 ## Server
 
-There is also streamlit server that can be started by the following command:
+There is also a streamlit server that can be started by the following command:
 
 ```
 (working_python_enviroment)$ streamlit run server.py
 ```
 
-Automatically the GUI inside the web browser will be displayed.
+Automatically, the GUI inside the web browser will be displayed.
 
 ![GUI](images/GUI.png)
 
-There you can just upload a MNIST image and get the models predition.
+There you can just upload a MNIST image and get the models'predition.
